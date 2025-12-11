@@ -117,9 +117,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
-        // 4️⃣ Xóa sản phẩm
-        // -------------------------
+        // Delete Product 
         private void DeleteProduct()
         {
             if (dgvShoe.CurrentRow == null)
