@@ -16,17 +16,16 @@ namespace SaleApp
     {
         string connectionString =
     "Server=DESKTOP-JSCD4Q8\\MASTERMOS;Database=ShoeStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
-        // **BỔ SUNG:** Biến thành viên để lưu trữ dữ liệu ảnh (Byte Array)
+
         private byte[] _employeePhotoBytes = null;
 
         public frmStaff()
         {
             InitializeComponent();
-            dgvStaff.CellClick += dgvStaff_CellClick; // gán sự kiện CellClick
+            dgvStaff.CellClick += dgvStaff_CellClick; 
         }
         private void frmStaff_Load(object sender, EventArgs e)
         {
-            // đảm bảo DataGridView sẽ tự sinh cột nếu bạn chưa cấu hình
             dgvStaff.AutoGenerateColumns = true; 
 
             LoadStaff();
@@ -51,7 +50,6 @@ namespace SaleApp
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Bổ sung cột GenderText
                     dt.Columns.Add("GenderText", typeof(string));
                     foreach (DataRow row in dt.Rows)
                     {
@@ -61,7 +59,6 @@ namespace SaleApp
 
                     dgvStaff.DataSource = dt;
 
-                    // Đặt lại HeaderText cho từng cột
                     dgvStaff.Columns["EmployeeID"].HeaderText = "Employee ID";
                     dgvStaff.Columns["LastName"].HeaderText = "Last Name";
                     dgvStaff.Columns["FirstName"].HeaderText = "First Name";
@@ -71,14 +68,13 @@ namespace SaleApp
                     dgvStaff.Columns["PhoneNumber"].HeaderText = "Phone Number";
                     dgvStaff.Columns["PhotoData"].HeaderText = "Photo";
 
-                    // Ẩn cột Gender vì đã dùng GenderText
                     if (dgvStaff.Columns.Contains("Gender"))
                         dgvStaff.Columns["Gender"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải dữ liệu nhân viên: " + ex.Message,
+                MessageBox.Show("Error loading employee data: " + ex.Message,
                                 "Database Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -96,14 +92,12 @@ namespace SaleApp
             rdoFemale.Checked = false;
             dtpDateofBirth.Value = DateTime.Now;
 
-            // Dispose ảnh hiện tại nếu có để tránh leak
             if (picImage.Image != null)
             {
                 picImage.Image.Dispose();
                 picImage.Image = null;
             }
 
-            // Reset dữ liệu ảnh (byte array)
             _employeePhotoBytes = null;
 
             txtEmployeeID.Focus();
@@ -237,26 +231,22 @@ namespace SaleApp
                 {
                     try
                     {
-                        // Đọc file vào byte[] trước để tránh bị lock file khi dùng Image.FromFile
                         byte[] imgBytes = File.ReadAllBytes(ofd.FileName);
 
-                        // Dispose ảnh cũ nếu có
                         if (picImage.Image != null)
                         {
                             picImage.Image.Dispose();
                             picImage.Image = null;
                         }
 
-                        // Gán ảnh bằng MemoryStream (không khóa file)
                         using (var ms = new MemoryStream(imgBytes))
                         {
-                            picImage.Image = Image.FromStream(ms);
+                            Image temp = Image.FromStream(ms);
+                            picImage.Image = (Image)temp.Clone(); 
                         }
 
-                        // Lưu đường dẫn gốc vào Tag (nếu cần lưu file vật lý sau này)
                         picImage.Tag = ofd.FileName;
 
-                        // Lưu byte[] để commit vào DB
                         _employeePhotoBytes = imgBytes;
                     }
                     catch (Exception ex)
@@ -273,30 +263,26 @@ namespace SaleApp
         {
             try
             {
-                // Hiển thị thông báo xác nhận
                 DialogResult result = MessageBox.Show(
-                    "Are you sure you want to exit?",  // Nội dung thông báo
-                    "Confirm Exit",                    // Tiêu đề hộp thoại
-                    MessageBoxButtons.YesNo,           // Hai nút Yes và No
-                    MessageBoxIcon.Question            // Biểu tượng dấu hỏi
+                    "Are you sure you want to exit?",  
+                    "Confirm Exit",                    
+                    MessageBoxButtons.YesNo,           
+                    MessageBoxIcon.Question            
                 );
 
                 if (result == DialogResult.Yes)
                 {
-                    // Kiểm tra xem MainForm có đang mở không
                     Form mainForm = Application.OpenForms["MainForm"];
                     if (mainForm != null)
                     {
-                        this.Hide();      // Ẩn form hiện tại
-                        mainForm.Show();  // Hiển thị MainForm
+                        this.Hide();      
+                        mainForm.Show();  
                     }
                     else
                     {
-                        // Đóng hẳn ứng dụng nếu không tìm thấy MainForm
                         this.Close();
                     }
                 }
-                // Nếu người dùng chọn No -> không làm gì
             }
             catch (Exception ex)
             {
@@ -344,7 +330,7 @@ namespace SaleApp
                     _employeePhotoBytes = row.Cells["PhotoData"].Value as byte[];
                     if (_employeePhotoBytes != null)
                     {
-                        // Dispose ảnh cũ trước
+                        // Dispose of the old image first
                         if (picImage.Image != null)
                         {
                             picImage.Image.Dispose();
@@ -387,7 +373,6 @@ namespace SaleApp
         {
             try
             {
-                // Validate bắt buộc
                 if (string.IsNullOrWhiteSpace(txtEmployeeID.Text) ||
                     string.IsNullOrWhiteSpace(txtLastName.Text) ||
                     string.IsNullOrWhiteSpace(txtFirstName.Text))
@@ -409,7 +394,7 @@ namespace SaleApp
                 {
                     conn.Open();
 
-                    // Kiểm tra trùng
+                    // Check if EmployeeID exists
                     const string checkQuery = "SELECT COUNT(1) FROM EMPLOYEE WHERE EmployeeID = @EmployeeID";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {

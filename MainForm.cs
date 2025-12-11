@@ -19,37 +19,43 @@ namespace SaleApp
         {
             InitializeComponent();
 
-            // Lưu dữ liệu
             this.fullName = fullName;
             this.role = role;
 
-            // Gán text trước rồi cho biến mất
             lblWelcome.Text = "Welcome, " + fullName;
             lblRole.Text = "Role: " + role;
 
-            // Ẩn label trên view chính 
+         
             this.lblWelcome.Visible = false;
             this.lblRole.Visible = false;
 
-            ApplyRolePermissions();      // Áp dụng phân quyền khi form load
+            ApplyRolePermissions();      
         }
 
-        // ROLE-BASED ACCESS CONTROL
         private void ApplyRolePermissions()
         {
+            btnStaff.Enabled = true;
+            btnCustomer.Enabled = true;
+            btnShoe.Enabled = true;
+            btnBill.Enabled = true;
+            btnStatistic.Enabled = true;
             switch (role)
             {
-                case "Admin":
-                    // Admin có toàn quyền – không khóa gì cả
+                case "Admin":                    
                     break;
 
                 case "Sales":
                     btnStaff.Enabled = false;
                     btnStatistic.Enabled = false;
                     break;
+                case "Warehouse":
+                    btnStaff.Enabled = false;
+                    btnCustomer.Enabled = false;
+                    btnBill.Enabled = false;
+                    btnStatistic.Enabled = false;
+                    break;
 
                 default:
-                    // Role không hợp lệ -> khóa hết (tăng bảo mật)
                     btnStaff.Enabled = false;
                     btnCustomer.Enabled = false;
                     btnShoe.Enabled = false;
@@ -76,7 +82,6 @@ namespace SaleApp
         {
             Application.Exit();
         }
-
 
         private void btnBill_Click(object sender, EventArgs e)
         {
@@ -110,16 +115,9 @@ namespace SaleApp
         {
             try
             {
-                // Tạo instance frmCustomer
                 frmCustomer customerForm = new frmCustomer();
-
-                // Gán sự kiện FormClosed để khi frmCustomer đóng, MainForm có thể hiển thị lại
                 customerForm.FormClosed += (s, args) => this.Show();
-
-                // Hiển thị frmCustomer
                 customerForm.Show();
-
-                // Ẩn MainForm
                 this.Hide();
             }
             catch (Exception ex)
@@ -132,12 +130,10 @@ namespace SaleApp
         {
             try
             {
-            // Tạo form frmShoe, truyền MainForm (this) vào constructor
             frmShoe shoeForm = new frmShoe();
             shoeForm.FormClosed += (s, args) => this.Show();
             shoeForm.Show();
 
-            // Ẩn MainForm
             this.Hide();
             }
             catch (Exception ex)
@@ -161,7 +157,7 @@ namespace SaleApp
         protected override void OnPaint(PaintEventArgs e)
         {
             using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
-                this.ClientRectangle, Color.Linen, Color.Beige, 90F)) // từ trên xuống dưới
+                this.ClientRectangle, Color.Linen, Color.Beige, 90F)) 
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }

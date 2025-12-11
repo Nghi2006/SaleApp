@@ -14,7 +14,7 @@ namespace SaleApp
     public partial class frmBillManagement : Form
     {
         string connectionString =
-          "Server=DESKTOP-JSCD4Q8\\MASTERMOS;Database=ShoeStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        "Server=DESKTOP-JSCD4Q8\\MASTERMOS;Database=ShoeStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
         public frmBillManagement()
         {
             InitializeComponent();
@@ -27,21 +27,21 @@ namespace SaleApp
             LoadProducts();
             LoadInvoiceIDs();
 
-            // Gọi hàm mới để hiển thị tất cả hóa đơn ngay khi form mở
             LoadAllInvoiceDetails();
         }
-        // -------------------- HÀM MỚI --------------------
+   
         private void LoadAllInvoiceDetails()
         {
             using (var conn = new SqlConnection(connectionString))
             {
                 string sql = @"
-SELECT i.InvoiceID AS [Mã HĐ],
-       c.FullName AS [Tên Khách],
-       p.ProductName AS [Tên Giày],
-       d.Quantity AS [Số lượng],
-       p.UnitPrice AS [Đơn giá],
-       (d.Quantity * p.UnitPrice) AS [Thành tiền]
+SELECT 
+     i.InvoiceID AS [Invoice ID],
+     c.FullName AS [Customer Name],
+     p.ProductName AS [Product Name],
+     d.Quantity AS [Quantity],
+     p.UnitPrice AS [Unit Price],
+     (d.Quantity * p.UnitPrice) AS [Total Amount]
 FROM INVOICE_DETAIL d
 JOIN INVOICE i ON d.InvoiceID = i.InvoiceID
 JOIN PRODUCT p ON d.ProductID = p.ProductID
@@ -55,7 +55,6 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
             }
         }
 
-        // -------------------- LOAD DANH SÁCH --------------------
         private void LoadEmployees()
         {
             using (var conn = new SqlConnection(connectionString))
@@ -65,8 +64,8 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
                 var dt = new DataTable();
                 da.Fill(dt);
 
-                cboEmployeeID.DisplayMember = "EmployeeID"; // hiển thị mã NV
-                cboEmployeeID.ValueMember = "EmployeeID";   // giá trị là mã NV
+                cboEmployeeID.DisplayMember = "EmployeeID"; 
+                cboEmployeeID.ValueMember = "EmployeeID";   
                 cboEmployeeID.DataSource = dt;
                 cboEmployeeID.SelectedIndex = -1;
             }
@@ -120,7 +119,7 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
             }
         }
 
-        // -------------------- EVENT COMBOBOX --------------------
+        // Event Handlers for ComboBoxes
         private void cboEmployeeID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboEmployeeID.SelectedIndex < 0) return;
@@ -158,7 +157,7 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
                 }
             }
         }
-
+        
         private void cboShoeID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboShoeID.SelectedIndex < 0) return;
@@ -181,7 +180,7 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
                 }
             }
         }
-
+        
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
             CalculateTotal();
@@ -199,7 +198,7 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
             }
         }
 
-        // -------------------- BUTTON ADD --------------------
+        // Add New Invoice
         private void btnAdd_Click(object sender, EventArgs e)
         {
             txtInvoiceID.Clear();
@@ -218,24 +217,24 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
             dgvBill.DataSource = null;
         }
 
-        // -------------------- BUTTON SAVE --------------------
+        // Save Invoice
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (cboEmployeeID.SelectedIndex < 0 || cboCustomerID.SelectedIndex < 0 || cboShoeID.SelectedIndex < 0)
             {
-                MessageBox.Show("Vui lòng chọn đầy đủ nhân viên, khách hàng và sản phẩm.");
+                MessageBox.Show("Please select an employee, a customer, and a product.");
                 return;
             }
-
+           
             if (!int.TryParse(txtQuantity.Text, out int qty) || qty <= 0)
             {
-                MessageBox.Show("Số lượng không hợp lệ.");
+                MessageBox.Show("The quantity entered is invalid.");
                 return;
             }
-
+          
             if (!decimal.TryParse(txtUnitPrice.Text, out decimal unitPrice))
             {
-                MessageBox.Show("Đơn giá không hợp lệ.");
+                MessageBox.Show("The unit price entered is invalid.");
                 return;
             }
 
@@ -254,7 +253,6 @@ JOIN CUSTOMER c ON i.CustomerID = c.CustomerID";
                     {
                         int invoiceID;
 
-                        // Nếu chưa có InvoiceID -> tạo mới
                         if (string.IsNullOrWhiteSpace(txtInvoiceID.Text))
                         {
                             string sqlInsertInvoice = @"
@@ -274,7 +272,6 @@ SELECT CAST(SCOPE_IDENTITY() AS int);";
                             invoiceID = int.Parse(txtInvoiceID.Text);
                         }
 
-                        // Thêm chi tiết hóa đơn
                         string sqlInsertDetail = @"
 INSERT INTO INVOICE_DETAIL(InvoiceID, ProductID, Quantity)
 VALUES(@InvoiceID, @ProductID, @Quantity)";
@@ -290,25 +287,27 @@ VALUES(@InvoiceID, @ProductID, @Quantity)";
                     catch (Exception ex)
                     {
                         tran.Rollback();
-                        MessageBox.Show("Lỗi khi lưu hóa đơn: " + ex.Message);
+                        MessageBox.Show("Error saving invoice: " + ex.Message);
                         return;
                     }
                 }
             }
 
             LoadInvoiceDetails(int.Parse(txtInvoiceID.Text));
-            MessageBox.Show("Đã lưu hóa đơn thành công!");
+            MessageBox.Show("Invoice saved successfully!");
         }
+
+        // Load Invoice Details
         private void LoadInvoiceDetails(int invoiceID)
         {
             using (var conn = new SqlConnection(connectionString))
             {
                 string sql = @"
-SELECT d.ProductID AS [Mã Giày],
-       p.ProductName AS [Tên Giày],
-       d.Quantity AS [Số lượng],
-       p.UnitPrice AS [Đơn giá],
-       (d.Quantity * p.UnitPrice) AS [Thành tiền]
+SELECT d.ProductID AS [ProductID],
+       p.ProductName AS [ProductName],
+       d.Quantity AS [Quantity],
+       p.UnitPrice AS [UnitPrice],
+       (d.Quantity * p.UnitPrice) AS [Total]
 FROM INVOICE_DETAIL d
 JOIN PRODUCT p ON d.ProductID = p.ProductID
 WHERE d.InvoiceID=@InvoiceID";
@@ -322,9 +321,9 @@ WHERE d.InvoiceID=@InvoiceID";
             }
         }
 
+        // Cancel
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Reset dữ liệu tạm giống btnAdd_Click
             txtInvoiceID.Clear();
             dtpDateOfSale.Value = DateTime.Now;
             cboEmployeeID.SelectedIndex = -1;
@@ -341,6 +340,7 @@ WHERE d.InvoiceID=@InvoiceID";
             dgvBill.DataSource = null;
         }
 
+        // Print Invoice
         private void btnPrint_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtInvoiceID.Text))
@@ -381,11 +381,10 @@ WHERE i.InvoiceID = @InvoiceID";
 
                 if (dt.Rows.Count == 0)
                 {
-                    MessageBox.Show("Không tìm thấy thông tin hóa đơn.");
+                    MessageBox.Show("No invoice information was found.");
                     return;
                 }
 
-                // Lấy thông tin chung của hóa đơn
                 DataRow firstRow = dt.Rows[0];
                 string header = $"Hóa đơn #{invoiceID}\n" +
                                 $"Ngày: {Convert.ToDateTime(firstRow["InvoiceDate"]).ToShortDateString()}\n" +
@@ -394,7 +393,6 @@ WHERE i.InvoiceID = @InvoiceID";
                                 $"Nhân viên bán: {firstRow["EmployeeName"]}\n\n" +
                                 $"Chi tiết sản phẩm:\n";
 
-                // Thêm chi tiết sản phẩm
                 string details = "";
                 decimal totalInvoice = 0;
                 foreach (DataRow row in dt.Rows)
@@ -404,18 +402,18 @@ WHERE i.InvoiceID = @InvoiceID";
                     decimal unitPrice = Convert.ToDecimal(row["UnitPrice"]);
                     decimal total = Convert.ToDecimal(row["TotalAmount"]);
 
-                    details += $"{productName} - Số lượng: {qty}, Đơn giá: {unitPrice:0,#}₫, Thành tiền: {total:0,#}₫\n";
+                    details += $"{productName} - Quantity: {qty}, Unit Price: {unitPrice:0,#}₫, Total: {total:0,#}₫\n";
                     totalInvoice += total;
                 }
 
-                details += $"\nTổng tiền: {totalInvoice:0,#}₫";
+                details += $"\nTotal Amount: {totalInvoice:0,#}₫";
 
                 MessageBox.Show(header + details, $"Hóa đơn #{invoiceID}");
             }
 
         }
 
-        // -------------------- BUTTON CLOSE --------------------
+        // Close form 
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -427,17 +425,15 @@ WHERE i.InvoiceID = @InvoiceID";
 
             if (result == DialogResult.Yes)
             {
-                // Lấy MainForm đang mở
                 Form mainForm = Application.OpenForms["MainForm"];
                 if (mainForm != null)
                 {
-                    mainForm.Show(); // Hiển thị lại MainForm
+                    mainForm.Show(); 
                 }
 
-                this.Close(); // Đóng frmBillManagement
+                this.Close(); 
             }
         }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
@@ -445,6 +441,24 @@ WHERE i.InvoiceID = @InvoiceID";
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
+        }
+        
+        // Search Invoice
+        private void btnSearchInvoice_Click(object sender, EventArgs e)
+        {
+            if (cboInvoiceID.SelectedIndex < 0)
+            {
+                LoadAllInvoiceDetails();
+                return;
+            }
+
+            if (!int.TryParse(cboInvoiceID.SelectedValue.ToString(), out int invoiceID))
+            {
+                MessageBox.Show("Invalid Invoice ID.");
+                return;
+            }
+
+            LoadInvoiceDetails(invoiceID);
         }
     }
 }

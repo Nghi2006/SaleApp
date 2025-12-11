@@ -22,7 +22,6 @@ namespace SaleApp
             LoadData();
         }
 
-        // 1️⃣ Load / Hiển thị dữ liệu
         private void LoadData()
         {
             try
@@ -35,8 +34,7 @@ namespace SaleApp
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgvShoe.DataSource = dt;
-                    txtTotalProducts.Text = dt.Rows.Count.ToString();
-                    
+                    txtTotalProducts.Text = dt.Rows.Count.ToString();        // Display the total number of products
                 }
             }
             catch (Exception ex)
@@ -45,9 +43,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
-        // 2️⃣ Thêm sản phẩm mới
-        // -------------------------
+        // Add new product
         private void AddProduct()
         {
             if (!ValidateFields(out decimal unitPrice)) return;
@@ -86,9 +82,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
-        // 3️⃣ Cập nhật sản phẩm
-        // -------------------------
+        // Update Product
         private void UpdateProduct()
         {
             if (dgvShoe.CurrentRow == null)
@@ -165,9 +159,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
-        // 5️⃣ Chọn / Xóa hình ảnh
-        // -------------------------
+        // Select / Delete image
         private void ChoosePicture()
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -202,9 +194,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
-        // 6️⃣ Clear form
-        // -------------------------
+        // Clear form
         private void ClearFields()
         {
             txtProductID.Clear();
@@ -214,9 +204,7 @@ namespace SaleApp
             picImage.Image = null;
         }
 
-        // -------------------------
-        // 7️⃣ Tìm kiếm sản phẩm
-        // -------------------------
+        // Search Product 
         private void SearchProduct()
         {
             string keyword = txtSearch.Text.Trim();
@@ -247,10 +235,8 @@ namespace SaleApp
                 MessageBox.Show("Error searching products: " + ex.Message);
             }
         }
-        // -------------------------
-        // 8️⃣ DataGridView row click
-        // -------------------------
 
+        // DataGridView row click
         private void dgvShoe_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -271,9 +257,7 @@ namespace SaleApp
             }
         }
 
-        // -------------------------
         // 9️⃣ Close form
-        // -------------------------
         private void CloseForm()
         {
             this.Close();
@@ -322,7 +306,6 @@ namespace SaleApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            // Hiển thị thông báo xác nhận bằng tiếng Anh
             DialogResult dr = MessageBox.Show(
                 "Are you sure you want to close Shoe Management?",
                 "Confirm Exit",
@@ -332,10 +315,9 @@ namespace SaleApp
 
             if (dr == DialogResult.Yes)
             {
-                this.Close();           // Đóng frmShoe
-                mainForm?.Show();       // Hiển thị lại MainForm
+                this.Close();           
+                mainForm?.Show();       
             }
-            // Nếu chọn No, thì không làm gì, form vẫn mở
         }
 
         private void btnChoosePicture_Click(object sender, EventArgs e)
@@ -380,6 +362,5 @@ namespace SaleApp
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
-
     }
 }

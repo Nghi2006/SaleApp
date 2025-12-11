@@ -31,7 +31,7 @@ namespace SaleApp
             SetupDgv(dgvProductStock);
             SetupDgv(dgvSaleProfit);
 
-            // Load dữ liệu ban đầu
+            // Load initial data
             LoadProductStock();
             LoadSaleProfit();
 
@@ -149,7 +149,7 @@ namespace SaleApp
                         da.Fill(dt);
                         dgvSaleProfit.DataSource = dt;
 
-                        // Tính tổng doanh thu/lợi nhuận
+                        // Calculate total revenue/profit
                         decimal totalRevenue = 0;
                         decimal totalProfit = 0;
                         foreach (DataRow row in dt.Rows)
@@ -246,7 +246,6 @@ namespace SaleApp
                 LoadSaleProfit();
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(

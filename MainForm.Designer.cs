@@ -54,19 +54,19 @@
             // 
             // btnStaff
             // 
-            this.btnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaff.Location = new System.Drawing.Point(32, 105);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.Size = new System.Drawing.Size(215, 37);
             this.btnStaff.TabIndex = 1;
-            this.btnStaff.Text = "Staff Management";
+            this.btnStaff.Text = "Employee Management";
             this.btnStaff.UseVisualStyleBackColor = true;
             this.btnStaff.Click += new System.EventHandler(this.btnStaff_Click);
             // 
             // btnCustomer
             // 
-            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.Location = new System.Drawing.Point(32, 180);
+            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.Location = new System.Drawing.Point(32, 172);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(215, 37);
             this.btnCustomer.TabIndex = 2;
@@ -76,8 +76,8 @@
             // 
             // btnShoe
             // 
-            this.btnShoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShoe.Location = new System.Drawing.Point(32, 243);
+            this.btnShoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShoe.Location = new System.Drawing.Point(32, 235);
             this.btnShoe.Name = "btnShoe";
             this.btnShoe.Size = new System.Drawing.Size(215, 37);
             this.btnShoe.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // btnBill
             // 
-            this.btnBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBill.Location = new System.Drawing.Point(32, 305);
             this.btnBill.Name = "btnBill";
             this.btnBill.Size = new System.Drawing.Size(215, 37);
@@ -98,8 +98,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(95, 425);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(95, 439);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(91, 37);
             this.btnExit.TabIndex = 5;
@@ -135,7 +135,7 @@
             // 
             // btnStatistic
             // 
-            this.btnStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStatistic.Location = new System.Drawing.Point(32, 370);
             this.btnStatistic.Name = "btnStatistic";
             this.btnStatistic.Size = new System.Drawing.Size(215, 38);

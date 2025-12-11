@@ -28,7 +28,6 @@ namespace SaleApp
             LoadCustomer();
             ClearFields();
         }
-        // a) Load dữ liệu khách hàng
         private void LoadCustomer()
         {
             try
@@ -42,7 +41,6 @@ namespace SaleApp
                     da.Fill(dt);
                     dgvCustomer.DataSource = dt;
 
-                    // Đặt HeaderText
                     dgvCustomer.Columns["CustomerID"].HeaderText = "Customer ID";
                     dgvCustomer.Columns["FullName"].HeaderText = "Full Name";
                     dgvCustomer.Columns["Address"].HeaderText = "Address";
@@ -55,7 +53,7 @@ namespace SaleApp
             }
         }
 
-        // f) Clear Fields
+        // Clear Fields
         private void ClearFields()
         {
             txtCustomerID.Clear();
@@ -65,7 +63,6 @@ namespace SaleApp
             txtCustomerID.Focus();
         }
 
-        // b) Thêm khách hàng mới
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -85,7 +82,6 @@ namespace SaleApp
                 {
                     conn.Open();
 
-                    // Kiểm tra tồn tại
                     string checkQuery = "SELECT COUNT(1) FROM CUSTOMER WHERE CustomerID = @CustomerID";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {
@@ -127,7 +123,6 @@ namespace SaleApp
             }
         }
 
-        // c) Cập nhật khách hàng
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -186,7 +181,6 @@ namespace SaleApp
             }
         }
 
-        // d) Xóa khách hàng
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -242,7 +236,6 @@ namespace SaleApp
             }
         }
 
-        // e) Tìm kiếm khách hàng
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -280,7 +273,6 @@ namespace SaleApp
             }
         }
 
-        // g) Chọn khách hàng từ DataGridView
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -299,7 +291,6 @@ namespace SaleApp
             }
         }
 
-        // Close button
         private void btnClose_Click(object sender, EventArgs e)
         {
             Form mainForm = Application.OpenForms["MainForm"];
@@ -318,28 +309,23 @@ namespace SaleApp
         {
             try
             {
-                // Hiển thị hộp thoại xác nhận
                 DialogResult result = MessageBox.Show(
-                    "Are you sure you want to exit?",  // Nội dung thông báo
-                    "Confirm Exit",                    // Tiêu đề hộp thoại
-                    MessageBoxButtons.YesNo,           // Hai nút Yes và No
-                    MessageBoxIcon.Question            // Biểu tượng dấu hỏi
+                    "Are you sure you want to exit?",  
+                    "Confirm Exit",                    
+                    MessageBoxButtons.YesNo,          
+                    MessageBoxIcon.Question          
                 );
 
                 if (result == DialogResult.Yes)
                 {
-                    // Lấy MainForm đang mở
                     Form mainForm = Application.OpenForms["MainForm"];
                     if (mainForm != null)
                     {
-                        // Hiển thị lại MainForm
                         mainForm.Show();
                     }
 
-                    // Đóng frmCustomer
                     this.Close();
                 }
-                // Nếu người dùng chọn No -> không làm gì
             }
             catch (Exception ex)
             {

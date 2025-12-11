@@ -9,11 +9,11 @@ namespace SaleApp
     {
         string connectionString =
        "Server=DESKTOP-JSCD4Q8\\MASTERMOS;Database=ShoeStoreDB;Trusted_Connection=True;TrustServerCertificate=True;";
-
         public frmLogin()
         {
             InitializeComponent();
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUser.Text.Trim();
@@ -50,7 +50,6 @@ namespace SaleApp
 
                         MessageBox.Show($"Welcome {fullName} ({role})!", "Login Successful");
 
-                        // Truyền FullName + Role sang MainForm
                         MainForm main = new MainForm(fullName, role);
                         main.Show();
                         this.Hide();
@@ -68,6 +67,7 @@ namespace SaleApp
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        // Color 
         protected override void OnPaint(PaintEventArgs e)
         {
             using (System.Drawing.Drawing2D.LinearGradientBrush brush =

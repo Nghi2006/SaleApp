@@ -50,78 +50,82 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(46, 232);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 18);
+            this.label8.Size = new System.Drawing.Size(119, 20);
             this.label8.TabIndex = 32;
             this.label8.Text = "Phone Number";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(46, 184);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 18);
+            this.label7.Size = new System.Drawing.Size(71, 20);
             this.label7.TabIndex = 31;
             this.label7.Text = "Address";
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(177, 138);
+            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFullName.Location = new System.Drawing.Point(199, 135);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(302, 22);
+            this.txtFullName.Size = new System.Drawing.Size(338, 27);
             this.txtFullName.TabIndex = 29;
             // 
             // txtPhoneNumber
             // 
-            this.txtPhoneNumber.Location = new System.Drawing.Point(177, 228);
+            this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNumber.Location = new System.Drawing.Point(199, 225);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(302, 22);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(338, 27);
             this.txtPhoneNumber.TabIndex = 26;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(177, 180);
+            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(199, 177);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(302, 22);
+            this.txtAddress.Size = new System.Drawing.Size(338, 27);
             this.txtAddress.TabIndex = 27;
             // 
             // txtCustomerID
             // 
-            this.txtCustomerID.Location = new System.Drawing.Point(177, 92);
+            this.txtCustomerID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomerID.Location = new System.Drawing.Point(199, 90);
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(302, 22);
+            this.txtCustomerID.Size = new System.Drawing.Size(338, 27);
             this.txtCustomerID.TabIndex = 25;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(46, 142);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 18);
+            this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 23;
             this.label3.Text = "Full Name ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(46, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 18);
+            this.label2.Size = new System.Drawing.Size(103, 20);
             this.label2.TabIndex = 22;
             this.label2.Text = "Customer ID";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(277, 23);
+            this.label1.Font = new System.Drawing.Font(".VnBlack", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(238, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 25);
+            this.label1.Size = new System.Drawing.Size(299, 31);
             this.label1.TabIndex = 21;
             this.label1.Text = "Customer Management";
             // 
@@ -138,10 +142,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(49, 527);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(50, 527);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 35);
+            this.btnAdd.Size = new System.Drawing.Size(100, 35);
             this.btnAdd.TabIndex = 34;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -149,10 +153,10 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(177, 527);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(174, 527);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 35);
+            this.btnUpdate.Size = new System.Drawing.Size(103, 35);
             this.btnUpdate.TabIndex = 34;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -160,10 +164,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(438, 527);
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(426, 527);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 35);
+            this.btnSearch.Size = new System.Drawing.Size(99, 35);
             this.btnSearch.TabIndex = 34;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -171,10 +175,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(307, 527);
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(304, 527);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 35);
+            this.btnDelete.Size = new System.Drawing.Size(97, 35);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -182,20 +186,20 @@
             // 
             // btnClear
             // 
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(554, 527);
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(547, 527);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 35);
+            this.btnClear.Size = new System.Drawing.Size(87, 35);
             this.btnClear.TabIndex = 34;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(670, 527);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(655, 527);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 35);
+            this.btnClose.Size = new System.Drawing.Size(90, 35);
             this.btnClose.TabIndex = 34;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
